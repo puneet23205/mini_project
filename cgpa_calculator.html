@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        .subject {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .subject label {
+            font-size: 16px;
+        }
+
+        .subject input {
+            width: 60px;
+            padding: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .calculate-btn {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calculate-btn:hover {
+            background-color: #d077ad;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .semester-select {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .semester-select select {
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2>CGPA Calculator</h2>
+
+        <!-- Semester Selection Dropdown -->
+        <div class="semester-select">
+            <label for="semester">Select Semester:</label>
+            <select id="semester" onchange="switchSemester()">
+                <option value="semester1">Semester 1</option>
+                <option value="semester2">Semester 2</option>
+                <option value="semester3" disabled>Semester 3 (Coming Soon)</option>
+                <option value="semester4" disabled>Semester 4 (Coming Soon)</option>
+                <option value="semester5" disabled>Semester 5 (Coming Soon)</option>
+                <option value="semester6" disabled>Semester 6 (Coming Soon)</option>
+                <option value="semester7" disabled>Semester 7 (Coming Soon)</option>
+                <option value="semester8" disabled>Semester 8 (Coming Soon)</option>
+            </select>
+        </div>
+
+        <!-- Semester 1 Form -->
+        <div id="semester1" class="semester-container">
+            <form id="cgpa-form-1">
+                <div class="subject">
+                    <label for="math1">Mathematics I (4 Credits):</label>
+                    <input type="number" id="math1" name="math1" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="physics">Physics (4 Credits):</label>
+                    <input type="number" id="physics" name="physics" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="electrical">Electrical (3 Credits):</label>
+                    <input type="number" id="electrical" name="electrical" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="evs">EVS (3 Credits):</label>
+                    <input type="number" id="evs" name="evs" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="pps">PPS (3 Credits):</label>
+                    <input type="number" id="pps" name="pps" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="graphics_lab">Graphics Lab (2 Credits):</label>
+                    <input type="number" id="graphics_lab" name="graphics_lab" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="physics_lab">Physics Lab (1 Credit):</label>
+                    <input type="number" id="physics_lab" name="physics_lab" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="electrical_lab">Electrical Lab (1 Credit):</label>
+                    <input type="number" id="electrical_lab" name="electrical_lab" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="pps_lab">PPS Lab (1 Credits):</label>
+                    <input type="number" id="pps_lab" name="pps_lab" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <button type="button" class="calculate-btn" onclick="calculateCGPA(1)">Calculate CGPA</button>
+            </form>
+        </div>
+
+        <!-- Semester 2 Form -->
+        <div id="semester2" class="semester-container hidden">
+            <form id="cgpa-form-2">
+                <div class="subject">
+                    <label for="math2">Mathematics II (4 Credits):</label>
+                    <input type="number" id="math2" name="math2" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="chemistry">Chemistry (4 Credits):</label>
+                    <input type="number" id="chemistry" name="chemistry" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="electronics">Electronics (3 Credits):</label>
+                    <input type="number" id="electronics" name="electronics" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="mechanical">Mechanical (3 Credits):</label>
+                    <input type="number" id="mechanical" name="mechanical" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="soft_skill">Soft Skill (3 Credits):</label>
+                    <input type="number" id="soft_skill" name="soft_skill" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="chemistry_lab">Chemistry Lab (1 Credit):</label>
+                    <input type="number" id="chemistry_lab" name="chemistry_lab" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="workshop_lab">Workshop Lab (2 Credits):</label>
+                    <input type="number" id="workshop_lab" name="workshop_lab" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="electronics_lab">Electronics Lab (1 Credits):</label>
+                    <input type="number" id="electronics_lab" name="electronics_lab" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <div class="subject">
+                    <label for="soft_skill_lab">Soft Skill Lab (1 Credit):</label>
+                    <input type="number" id="soft_skill_lab" name="soft_skill_lab" min="0" max="10" placeholder="Grade" required>
+                </div>
+                <button type="button" class="calculate-btn" onclick="calculateCGPA(2)">Calculate CGPA</button>
+            </form>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function switchSemester() {
+            const allSemesters = document.querySelectorAll('.semester-container');
+            allSemesters.forEach(semester => semester.classList.add('hidden'));
+
+            const selectedSemester = document.getElementById(document.getElementById('semester').value);
+            if (selectedSemester) {
+                selectedSemester.classList.remove('hidden');
+            }
+            document.getElementById('result').textContent = '';
+        }
+
+        function calculateCGPA(semester) {
+            const subjects = semester === 1 ? [
+                { grade: parseFloat(document.getElementById('math1').value), credits: 4 },
+                { grade: parseFloat(document.getElementById('physics').value), credits: 4 },
+                { grade: parseFloat(document.getElementById('electrical').value), credits: 3 },
+                { grade: parseFloat(document.getElementById('evs').value), credits: 3 },
+                { grade: parseFloat(document.getElementById('pps').value), credits: 3 },
+                { grade: parseFloat(document.getElementById('graphics_lab').value), credits: 2 },
+                { grade: parseFloat(document.getElementById('physics_lab').value), credits: 1 },
+                { grade: parseFloat(document.getElementById('electrical_lab').value), credits: 1 },
+                { grade: parseFloat(document.getElementById('pps_lab').value), credits: 1 },
+            ] : [
+                { grade: parseFloat(document.getElementById('math2').value), credits: 4 },
+                { grade: parseFloat(document.getElementById('chemistry').value), credits: 4 },
+                { grade: parseFloat(document.getElementById('electronics').value), credits: 3 },
+                { grade: parseFloat(document.getElementById('mechanical').value), credits: 3 },
+                { grade: parseFloat(document.getElementById('soft_skill').value), credits: 3 },
+                { grade: parseFloat(document.getElementById('chemistry_lab').value), credits: 1 },
+                { grade: parseFloat(document.getElementById('workshop_lab').value), credits: 2 },
+                { grade: parseFloat(document.getElementById('electronics_lab').value), credits: 1 },
+                { grade: parseFloat(document.getElementById('soft_skill_lab').value), credits: 1 },
+            ];
+
+            const totalCredits = subjects.reduce((sum, subject) => sum + subject.credits, 0);
+            const weightedGrades = subjects.reduce((sum, subject) => sum + (subject.grade * subject.credits), 0);
+
+            const cgpa = weightedGrades / totalCredits;
+            document.getElementById('result').textContent = `Your CGPA for Semester ${semester} is: ${cgpa.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
